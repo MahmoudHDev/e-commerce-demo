@@ -1,0 +1,61 @@
+/* .card>p {
+    padding: 0;
+    margin: 0;
+} */
+
+.card>* {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.card {
+    cursor: pointer;
+    box-shadow: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.card:hover {
+    box-shadow: 0.5px 0px 8px 1px rgba(0, 0, 0, 0.305);
+    -webkit-box-shadow: 0.5px 0px 8px 1px rgba(0, 0, 0, 0.305);
+    -moz-box-shadow: 0.5px 0px 8px 1px rgba(0, 0, 0, 0.305);
+    transition: all 0.3s ease-in-out;
+
+}
+
+.product-title,
+.product-desc {
+    line-height: 1.2em;
+    height: 3.6em;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.product-title {
+    font-weight: 600;
+}
+
+.color-cube {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    border: solid 0.5px black;
+}
+
+.product-color {
+    margin-right: 10px;
+}
+
+.product-container {
+    background-color: black;
+    margin: 0;
+    padding: 0;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-container p {
+    padding: 10px;
+    margin: 0px;
+}
