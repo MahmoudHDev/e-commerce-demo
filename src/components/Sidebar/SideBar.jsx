@@ -1,14 +1,26 @@
 import './Sidebar.css';
 import useCategories from '../../hooks/useCategories.js';
 import GetCategoryIcon from '../../utils/GetCategoryIcon.jsx';
+import { useLocation, useNavigate } from 'react-router-dom';
+
 
 export default function SideBar({ selectedCategory, onSelectCategory }) {
 
     const { categories } = useCategories();
+    const location = useLocation();
+    const navigate = useNavigate();
 
     const handleClick = (item) => {
         // onSelectCategory is a prop of type setState, passed from the App component.
-        onSelectCategory(item)
+
+        console.log(location.pathname)
+        if (location.pathname !== '/') {
+            navigate('/')
+            onSelectCategory(item)
+        } else {
+            onSelectCategory(item)
+        }
+
     }
 
     return (<div className='sidebar-container'>

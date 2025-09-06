@@ -11,6 +11,7 @@ function Home({ category = "" }) {
 
     useEffect(() => {
         console.log("Changed")
+
     }, [productsData])
 
 

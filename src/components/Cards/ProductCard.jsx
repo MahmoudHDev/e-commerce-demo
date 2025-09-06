@@ -27,7 +27,7 @@ export default function ProductCard(productItem) {
                                     justifyContent: "center",
                                     background: "#f0f0f0"
                                 }}>
-                                    <span>Loading...</span>
+                                    <img src='https://user-images.githubusercontent.com/20684618/31289519-9ebdbe1a-aae6-11e7-8f82-bf794fdd9d1a.png' />
                                 </div>
 
                             }
