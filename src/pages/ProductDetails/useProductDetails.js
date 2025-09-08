@@ -8,11 +8,12 @@ const useProductDetails = (id) => {
 
     const fetchProductDetails = async () => {
         console.log("The ID: " + id)
-        const api_URL = `https://fakestoreapi.in/api/products/${id}`;
+        const api_URL = `https://api.escuelajs.co/api/v1/products/${id}`;
         try {
             const response = await axios.get(api_URL);
             if (response.data) {
-                setDetails(response.data.product)
+
+                setDetails(response.data)
             } else {
                 console.log("Error has been occured from the API")
             }

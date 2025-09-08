@@ -5,19 +5,18 @@ const useProductsHook = (categoryType) => {
 
 
     const [productsData, setProductsData] = useState(null);
-    // const [choosenCategory, setChoosenCategory] = useState(categoryType)
-
-
     console.log(categoryType)
-
     const fetchProducts = async () => {
         console.log("Fetching Products from the hook")
-        const myURL = `https://fakestoreapi.in/api/products${categoryType !== "" ? `/category?type=${categoryType}` : ""}`;
+
+        // https://api.escuelajs.co/api/v1/categories/slug/
+        const myURL = `https://api.escuelajs.co/api/v1${categoryType !== "" ? `/categories/${categoryType}/products` : "/products"}`;
         try {
 
             const response = await axios.get(myURL)
             if (response.status === 200) {
-                setProductsData(response.data.products)
+                console.log(response.data)
+                setProductsData(response.data)
             } else {
                 console.log("error in API")
             }
@@ -26,9 +25,6 @@ const useProductsHook = (categoryType) => {
         } catch (err) {
             return { message: "Network Error", error: err || "Error has been occured" }
         }
-
-
-
     }
 
 

@@ -9,14 +9,16 @@ const useCategories = () => {
     const fetchCategories = async () => {
         try {
             if (!categories) {
-                const apiURL = "https://fakestoreapi.in/api/products/category";
-                const response = await axios.get(apiURL);
+                // const apiURL = "https://fakestoreapi.in/api/products/category";  // ==> old API 
+                const newAPIURL = "https://api.escuelajs.co/api/v1/categories";
+                const response = await axios.get(newAPIURL);
                 if (response.data) {
-                    setCategoies(response.data.categories)
+                    console.log(response.data);
+                    setCategoies(response.data);
                 }
             };
         } catch (err) {
-            console.log(err)
+            console.log(err);
         }
     }
 

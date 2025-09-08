@@ -3,6 +3,8 @@ import './ProductCard.css';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import { Link } from 'react-router-dom';
+
+
 export default function ProductCard(productItem) {
     return (
         <Col key={productItem.id}>
@@ -31,12 +33,12 @@ export default function ProductCard(productItem) {
                                 </div>
 
                             }
-                            src={productItem.image} />
+                            src={productItem.images[0]} />
                     </div>
 
                     <p className='product-title text-center pb-2'>{productItem.title}</p>
 
-                    <p className='product-brand'>Brand: {productItem.brand}</p>
+                    {/* <p className='product-brand'>Brand: {productItem.brand}</p> */}
 
                     {/* Color cube */}
                     <div className='d-flex'>

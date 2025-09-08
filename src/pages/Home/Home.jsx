@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import useProductsHook from "../../hooks/useProductsHook";
 import ProductCard from "../../components/Cards/ProductCard";
 import { Row } from 'react-bootstrap';
@@ -9,10 +9,8 @@ import { Row } from 'react-bootstrap';
 function Home({ category = "" }) {
     const { productsData } = useProductsHook(category)
 
-    useEffect(() => {
-        console.log("Changed")
-
-    }, [productsData])
+    // useEffect(() => {
+    // }, [productsData])
 
 
     return (<>

@@ -16,3 +16,38 @@
 .div2 {
     grid-area: 1 / 2 / 2 / 3;
 }
+
+
+.q-container input,
+button {
+    height: 40px;
+    width: 30%;
+}
+
+.q-container input {
+    border-radius: 12px;
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: none;
+}
+
+
+.carousel-item-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 420px;
+    /* pick a fixed height that fits your design (adjust as needed) */
+    overflow: hidden;
+}
+
+.custom-carousel-img {
+    max-height: 100%;
+    width: auto;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+    border-radius: 15px;
+}

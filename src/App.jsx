@@ -22,6 +22,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home category={selectedCategory === "all" ? "" : selectedCategory} />} />
           <Route path='/product/:id' element={<ProductDetails />} />
+
         </Routes>
       </Container>
     </BrowserRouter>
