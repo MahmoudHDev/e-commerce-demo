@@ -9,7 +9,9 @@ import {
     faVials,
     faEnvelopesBulk,
     faDumpster,
-    faCartShopping
+    faCartShopping,
+    faSprayCanSparkles,
+    faTree
 } from '@fortawesome/free-solid-svg-icons';
 
 function GetCategoryIcon({ category }) {
@@ -27,6 +29,8 @@ function GetCategoryIcon({ category }) {
             return <FontAwesomeIcon icon={faBoxOpen} size="xl" />
         case "adso":
             return <FontAwesomeIcon icon={faTentArrowDownToLine} size="xl" />
+        case "perfumes":
+            return <FontAwesomeIcon icon={faSprayCanSparkles} size="xl" />
         case "testing-category":
             return <FontAwesomeIcon icon={faVials} size="xl" />
         case "new-category":
@@ -35,8 +39,9 @@ function GetCategoryIcon({ category }) {
             return <FontAwesomeIcon icon={faDumpster} size="xl" />
         case "cart":
             return <FontAwesomeIcon icon={faCartShopping} size="xm" color='white' />
+
         default:
-            return <></>;
+            return <FontAwesomeIcon icon={faTree} size="xl" />;
     };
 };
 

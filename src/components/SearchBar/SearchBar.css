@@ -26,4 +26,14 @@ input:focus {
 .fa-magnifying-glass {
     font-size: 22px;
     color: gray;
+
+}
+
+.search-results {
+    background-color: white;
+    width: 280px;
+    position: absolute;
+    z-index: 2;
+    /* margin-left: 30px; */
+
 }

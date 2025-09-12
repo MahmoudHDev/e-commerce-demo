@@ -6,12 +6,24 @@ import { Link } from 'react-router-dom';
 
 
 export default function ProductCard(productItem) {
+
+    const imgStyle = {
+        width: "200px",
+        height: "200px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        background: "#f0f0f0"
+    };
+
+
+
     return (
         <Col key={productItem.id}>
             <Link to={`/product/${productItem.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                 <Card>
                     <div className='d-flex justify-content-center align-items-center'>
-                        {/* <img className='product-img' src={productItem.image} height={"200px"} width={"200px"} /> */}
+
                         <LazyLoadImage
                             className='product-img'
                             height={"200px"} width={"200px"}
@@ -21,14 +33,9 @@ export default function ProductCard(productItem) {
                                 style: { transitionDelay: "0.8" },
                             }}
                             placeholder={
-                                <div style={{
-                                    width: "200px",
-                                    height: "200px",
-                                    display: "flex",
-                                    alignItems: "center",
-                                    justifyContent: "center",
-                                    background: "#f0f0f0"
-                                }}>
+                                <div
+                                    style={imgStyle}
+                                    className='mt-2'>
                                     <img src='https://user-images.githubusercontent.com/20684618/31289519-9ebdbe1a-aae6-11e7-8f82-bf794fdd9d1a.png' />
                                 </div>
 

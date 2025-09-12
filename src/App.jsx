@@ -9,6 +9,7 @@ import { Container } from 'react-bootstrap';
 import SideBar from './components/Sidebar/SideBar.jsx';
 import ProductDetails from './pages/ProductDetails/ProductDetails.jsx';
 import { useState } from 'react';
+import NotFound from './pages/NotFound/NotFound.jsx';
 function App() {
 
   const [selectedCategory, setSelectedCategory] = useState("all");
@@ -22,7 +23,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home category={selectedCategory === "all" ? "" : selectedCategory} />} />
           <Route path='/product/:id' element={<ProductDetails />} />
-
+          <Route path='*' element={<NotFound />} />
         </Routes>
       </Container>
     </BrowserRouter>

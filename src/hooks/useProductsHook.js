@@ -25,8 +25,7 @@ const useProductsHook = (categoryType) => {
         } catch (err) {
             return { message: "Network Error", error: err || "Error has been occured" }
         }
-    }
-
+    };
 
     useEffect(() => {
         fetchProducts()
