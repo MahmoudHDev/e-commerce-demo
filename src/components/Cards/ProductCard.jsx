@@ -32,14 +32,12 @@ export default function ProductCard(productItem) {
                             wrapperProps={{
                                 style: { transitionDelay: "0.8" },
                             }}
-                            placeholder={
-                                <div
-                                    style={imgStyle}
-                                    className='mt-2'>
-                                    <img src='https://user-images.githubusercontent.com/20684618/31289519-9ebdbe1a-aae6-11e7-8f82-bf794fdd9d1a.png' />
-                                </div>
-
-                            }
+                            placeholder=
+                            {<div
+                                style={imgStyle}
+                                className='mt-2'>
+                                <img src='https://user-images.githubusercontent.com/20684618/31289519-9ebdbe1a-aae6-11e7-8f82-bf794fdd9d1a.png' />
+                            </div>}
                             src={productItem.images[0]} />
                     </div>
 

@@ -10,6 +10,8 @@ import SideBar from './components/Sidebar/SideBar.jsx';
 import ProductDetails from './pages/ProductDetails/ProductDetails.jsx';
 import { useState } from 'react';
 import NotFound from './pages/NotFound/NotFound.jsx';
+import Profile from './pages/Profile/Profile.jsx';
+
 function App() {
 
   const [selectedCategory, setSelectedCategory] = useState("all");
@@ -23,6 +25,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home category={selectedCategory === "all" ? "" : selectedCategory} />} />
           <Route path='/product/:id' element={<ProductDetails />} />
+          <Route path='/profile/:profileId' element={<Profile />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
       </Container>
@@ -32,4 +35,4 @@ function App() {
   </>)
 }
 
-export default App
+export default App;
