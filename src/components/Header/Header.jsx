@@ -1,8 +1,13 @@
 import './Header.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import SearchBar from '../SearchBar/SearchBar.jsx';
+
+
 export default function Header() {
+
+    const navigate = useNavigate();
+
     return (<div className="header flex align-items-center container-fluid">
 
         <div className='logo-sec'>
@@ -11,10 +16,9 @@ export default function Header() {
         <SearchBar />
 
         <div className='personal-btns d-flex'>
-            <Button variant="danger"><i className="fa-solid fa-cart-shopping"></i></Button>
-            <Link className='px-0 py-0 mx-0 my-0' to={`/profile/${'login'}`}>
-                <Button variant="dark"><i className="fa-solid fa-user"></i></Button>
-            </Link>
+            <Button variant="danger" onClick={() => navigate(`/cart/${"changeThis"}`)}><i className="fa-solid fa-cart-shopping"></i></Button>
+            <Button variant="dark" onClick={() => navigate(`/profile/${'login'}`)}><i className="fa-solid fa-user"></i></Button>
+
             <Button variant="light"><i className="fa-solid fa-bell"></i></Button>
 
         </div>

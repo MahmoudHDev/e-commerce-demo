@@ -11,6 +11,8 @@ import ProductDetails from './pages/ProductDetails/ProductDetails.jsx';
 import { useState } from 'react';
 import NotFound from './pages/NotFound/NotFound.jsx';
 import Profile from './pages/Profile/Profile.jsx';
+import Cart from './pages/Cart/Cart.jsx';
+import Payment from './pages/Payment/Payment.jsx';
 
 function App() {
 
@@ -26,6 +28,8 @@ function App() {
           <Route path="/" element={<Home category={selectedCategory === "all" ? "" : selectedCategory} />} />
           <Route path='/product/:id' element={<ProductDetails />} />
           <Route path='/profile/:profileId' element={<Profile />} />
+          <Route path='/cart/:profileId' element={<Cart />} />
+          <Route path='/payment/:profileId' element={<Payment />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
       </Container>
