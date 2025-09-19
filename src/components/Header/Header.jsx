@@ -7,6 +7,13 @@ import SearchBar from '../SearchBar/SearchBar.jsx';
 export default function Header() {
 
     const navigate = useNavigate();
+    // const user = useContext(UseContext);
+
+
+    // useEffect(() => {
+    //     console.log(user);
+    // })
+
 
     return (<div className="header flex align-items-center container-fluid">
 
@@ -16,6 +23,7 @@ export default function Header() {
         <SearchBar />
 
         <div className='personal-btns d-flex'>
+
             <Button variant="danger" onClick={() => navigate(`/cart/${"changeThis"}`)}><i className="fa-solid fa-cart-shopping"></i></Button>
             <Button variant="dark" onClick={() => navigate(`/profile/${'login'}`)}><i className="fa-solid fa-user"></i></Button>
 

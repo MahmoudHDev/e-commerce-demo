@@ -23,13 +23,12 @@ const useProfile = () => {
                     console.log("Show Error")
                     setLoginErr({ message: "Login failed, Please check your username or password", isLoggedIn: false })
                 }
-
-            }
+            };
         } catch (err) {
             console.log(err)
             setLoginErr({ message: "Error occured, Please Check your Network", isLoggedIn: false })
-        }
-    }
+        };
+    };
 
 
     useEffect(() => {

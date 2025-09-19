@@ -1,45 +1,53 @@
-
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './styles/main.css';
+import { useState } from 'react';
 import Header from "./components/Header/Header"
 import Footer from "./components/Footer/Footer"
 import Home from "./pages/Home/Home.jsx";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './styles/main.css';
 import { Container } from 'react-bootstrap';
 import SideBar from './components/Sidebar/SideBar.jsx';
 import ProductDetails from './pages/ProductDetails/ProductDetails.jsx';
-import { useState } from 'react';
 import NotFound from './pages/NotFound/NotFound.jsx';
 import Profile from './pages/Profile/Profile.jsx';
 import Cart from './pages/Cart/Cart.jsx';
 import Payment from './pages/Payment/Payment.jsx';
+import AuthProvider from './context/AuthProvider.jsx';
+import PrivateRoute from './Router/PrivateRouter.jsx';
+
 
 function App() {
 
   const [selectedCategory, setSelectedCategory] = useState("all");
 
-
-
-
   return (<>
+    <Router>
+      <AuthProvider>
+        {/* Children */}
+        <Header />
+        <SideBar selectedCategory={selectedCategory} onSelectCategory={setSelectedCategory} />
+        <Container>
+          <Routes>
+            <Route path="/" element={<Home category={selectedCategory === "all" ? "" : selectedCategory} />} />
+            <Route path='/product/:id' element={<ProductDetails />} />
+            <Route path='/profile/:profileId' element={<Profile />} />
 
-    <BrowserRouter>
-      <Header />
-      <SideBar selectedCategory={selectedCategory} onSelectCategory={setSelectedCategory} />
-      <Container>
-        <Routes>
-          <Route path="/" element={<Home category={selectedCategory === "all" ? "" : selectedCategory} />} />
-          <Route path='/product/:id' element={<ProductDetails />} />
-          <Route path='/profile/:profileId' element={<Profile />} />
-          <Route path='/cart/:profileId' element={<Cart />} />
-          <Route path='/payment/:profileId' element={<Payment />} />
-          <Route path='*' element={<NotFound />} />
-        </Routes>
-      </Container>
-    </BrowserRouter>
 
+            <Route element={<PrivateRoute />}>
+              <Route path='/cart/:profileId' element={<Cart />} />
+              <Route path='/payment/:profileId' element={<Payment />} />
+            </Route>
+
+
+            <Route path='*' element={<NotFound />} />
+          </Routes>
+        </Container>
+        {/* ## Children ## End */}
+
+      </AuthProvider>
+    </Router>
     <Footer />
-  </>)
+  </>);
 }
 
 export default App;
