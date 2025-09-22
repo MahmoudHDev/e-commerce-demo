@@ -9,12 +9,12 @@ import { Container } from 'react-bootstrap';
 import SideBar from './components/Sidebar/SideBar.jsx';
 import ProductDetails from './pages/ProductDetails/ProductDetails.jsx';
 import NotFound from './pages/NotFound/NotFound.jsx';
-import Profile from './pages/Profile/Profile.jsx';
+import Login from './pages/Login/Login.jsx';
 import Cart from './pages/Cart/Cart.jsx';
 import Payment from './pages/Payment/Payment.jsx';
 import AuthProvider from './context/AuthProvider.jsx';
 import PrivateRoute from './Router/PrivateRouter.jsx';
-
+import Profile from './pages/Profile/Profile.jsx';
 
 function App() {
 
@@ -30,12 +30,12 @@ function App() {
           <Routes>
             <Route path="/" element={<Home category={selectedCategory === "all" ? "" : selectedCategory} />} />
             <Route path='/product/:id' element={<ProductDetails />} />
-            <Route path='/profile/:profileId' element={<Profile />} />
-
+            <Route path='/login' element={<Login />} />
+            <Route path='/cart' element={<Cart />} />
 
             <Route element={<PrivateRoute />}>
-              <Route path='/cart/:profileId' element={<Cart />} />
-              <Route path='/payment/:profileId' element={<Payment />} />
+              <Route path='/profile/:profileID' element={<Profile />} />
+              <Route path='/payment' element={<Payment />} />
             </Route>
 
 

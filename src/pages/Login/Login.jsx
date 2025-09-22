@@ -1,0 +1,51 @@
+import { useState } from "react";
+import './Login.css';
+import { Button } from "react-bootstrap";
+import { useAuth } from "../../context/AuthProvider.jsx";
+
+function Profile() {
+
+    const [userInfo, setUserInfo] = useState({ email: "", password: "" })
+    const auth = useAuth();
+
+    const handleChange = (e) => {
+        const name = e.target.name;
+        const value = e.target.value;
+        setUserInfo(values => ({ ...values, [name]: value }));
+    };
+
+    const handleSubmit = (e) => {
+        // To prevent a page reload when a submit button is clicked within a form in React.
+        e.preventDefault();
+        auth.loginAction(userInfo);
+    };
+
+    return (<div>
+        <h1>Login page</h1>
+        <h3>Please login to continue</h3>
+
+        <form onSubmit={handleSubmit}>
+            <div className="profile-info d-flex flex-column">
+                <input
+                    placeholder="Username..."
+                    name="email"
+                    type="text"
+                    onChange={handleChange}
+                    value={userInfo.email || ""}>
+                </input>
+                <br />
+                <input
+                    placeholder="Password"
+                    type="password"
+                    name="password"
+                    onChange={handleChange}
+                    value={userInfo.password || ""}>
+                </input>
+                {/* {loginErr && !loginErr.isLoggedIn ? <p className="text-danger">{loginErr.message || "Error occured"}</p> : <></>} */}
+                <Button type="submit" variant="primary">Sign in</Button>
+            </div>
+        </form>
+    </div>)
+};
+
+export default Profile;

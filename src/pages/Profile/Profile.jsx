@@ -1,69 +1,43 @@
-import { useState, useEffect } from "react";
-import './Profile.css';
-import { Button } from "react-bootstrap";
-import { useAuth } from "../../context/AuthProvider.jsx";
-// import useProfile from './useProfile';
+import React from 'react'
+import { useAuth } from '../../context/AuthProvider'
 
-// import { useNavigate } from 'react-router-dom';
+import './Profile.css';
 function Profile() {
 
-    // States
-    const [userInfo, setUserInfo] = useState({ email: "", password: "" })
-    const auth = useAuth();
-    // const navigate = useNavigate();
-    // const { setLogin, userAuth, loginErr } = useProfile(userInfo || "")
+    const { logOut, profileData } = useAuth();
+
+    return (<div>
+
+        <h1>user Profile</h1>
+        <hr />
 
 
-    const handleChange = (e) => {
-        const name = e.target.name;
-        const value = e.target.value;
-        setUserInfo(values => ({ ...values, [name]: value }));
-    };
+        <div className='profile-container'>
+            <div className='data-cont'>
+                {/* data */}
+                <p>Name: {profileData.name}</p>
+                <p>Email: {profileData.email}</p>
+                <p>Role: {profileData.role}</p>
+                <p>creation at: {new Date(profileData.creationAt).getDay() + "/" + new Date(profileData.creationAt).getMonth() + "/" + new Date(profileData.creationAt).getFullYear()}</p>
+            </div>
+            <div className='img-cont'>
+                <img src={profileData.avatar} />
+            </div>
+        </div>
 
-    const handleSubmit = (e) => {
-        // To prevent a page reload when a submit button is clicked within a form in React.
-        e.preventDefault();
-        // setLogin(userInfo);
-        console.log(userInfo)
-        auth.loginAction(userInfo);
-    };
 
 
-    useEffect(() => {
-        // if (userAuth) {
-        //     console.log("Redirect to home");
-        //     navigate('/');
-        // };
-    }, [])
 
-    return (
 
-        <div>
-            <h1>Profile</h1>
-            <h3>Please login to continue</h3>
 
-            <form onSubmit={handleSubmit}>
-                <div className="profile-info d-flex flex-column">
-                    <input
-                        placeholder="Username..."
-                        name="email"
-                        type="text"
-                        onChange={handleChange}
-                        value={userInfo.email || ""}>
-                    </input>
-                    <br />
-                    <input
-                        placeholder="Password"
-                        type="password"
-                        name="password"
-                        onChange={handleChange}
-                        value={userInfo.password || ""}>
-                    </input>
-                    {/* {loginErr && !loginErr.isLoggedIn ? <p className="text-danger">{loginErr.message || "Error occured"}</p> : <></>} */}
-                    <Button type="submit" variant="primary">Sign in</Button>
-                </div>
-            </form>
-        </div>)
+
+
+        <button onClick={() => logOut()}>logout</button>
+
+
+
+
+    </div>)
 }
 
-export default Profile;
+export default Profile

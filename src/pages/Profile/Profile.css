@@ -1,10 +1,7 @@
-.profile-info {
-    gap: 5px;
-}
-
-.profile-info input {
-    border-radius: 15px;
-    border: 0.5px solid rgb(75, 75, 75);
-    padding-left: 10px;
-    height: 50px;
+.profile-container {
+    display: grid;
+    width: 100vw;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    gap: 10px;
 }
