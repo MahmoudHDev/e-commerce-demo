@@ -11,7 +11,8 @@ import {
     faDumpster,
     faCartShopping,
     faSprayCanSparkles,
-    faTree
+    faTree,
+    faUser
 } from '@fortawesome/free-solid-svg-icons';
 
 function GetCategoryIcon({ category }) {
@@ -39,7 +40,8 @@ function GetCategoryIcon({ category }) {
             return <FontAwesomeIcon icon={faDumpster} size="xl" />
         case "cart":
             return <FontAwesomeIcon icon={faCartShopping} size="xm" color='white' />
-
+        case "profile":
+            return <FontAwesomeIcon icon={faUser} size="xl" style={{ color: "white" }} />
         default:
             return <FontAwesomeIcon icon={faTree} size="xl" />;
     };

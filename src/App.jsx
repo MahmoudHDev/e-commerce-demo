@@ -20,18 +20,20 @@ function App() {
 
   const [selectedCategory, setSelectedCategory] = useState("all");
 
+  const [selectedProducts, SetSelectedProducts] = useState(new Set());
+
   return (<>
     <Router>
       <AuthProvider>
         {/* Children */}
-        <Header />
+        <Header selectedProductsNumber={selectedProducts.length} />
         <SideBar selectedCategory={selectedCategory} onSelectCategory={setSelectedCategory} />
         <Container>
           <Routes>
             <Route path="/" element={<Home category={selectedCategory === "all" ? "" : selectedCategory} />} />
-            <Route path='/product/:id' element={<ProductDetails />} />
+            <Route path='/product/:id' element={<ProductDetails onSelectProducts={SetSelectedProducts} />} />
             <Route path='/login' element={<Login />} />
-            <Route path='/cart' element={<Cart />} />
+            <Route path='/cart' element={<Cart selectedProducts={selectedProducts} />} />
 
             <Route element={<PrivateRoute />}>
               <Route path='/profile/:profileID' element={<Profile />} />
