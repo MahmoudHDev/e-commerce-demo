@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import useProductDetails from './useProductDetails.js';
 import './ProductDetails.css';
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import GetCategoryIcon from "../../utils/GetCategoryIcon.jsx";
 import { Form, Button, Carousel } from "react-bootstrap";
 import { useAuth } from "../../context/AuthProvider.jsx";
@@ -13,9 +13,11 @@ export default function ProductDetails({ onSelectProducts }) {
     const [proDetails, setProDetails] = useState(null)
     const quantityDefNumber = 10;
     const [index, setIndex] = useState(0);
-    const [selectedValue, setSelectedValue] = useState("Quantity");
+    const [selectedQuantity, setSelectedQuantity] = useState("Quantity");
     const { profileData } = useAuth();
     const [profileId, setProfileID] = useState(false)
+    const [btnStatus, setBtnStatus] = useState(false)
+
 
     const handleSelect = (selectedIndex) => {
         setIndex(selectedIndex);
@@ -26,22 +28,24 @@ export default function ProductDetails({ onSelectProducts }) {
         // console.log(userAuth)
         if (profileData && profileData.id) {
             setProfileID(profileData.id);
-        }
-
+        };
+        console.log(`The btn status is: ${btnStatus}`)
     }, [details, profileData]);
 
 
-    const handleQuantities = (e) => {
-        if (selectedValue !== "Quantity") {
-            setSelectedValue(e.target.value)
-        }
 
+    const handleQuantities = (e) => {
+        const newValue = e.target.value;
+        setSelectedQuantity(newValue);
+
+        setBtnStatus(newValue !== "Quantity")
     };
 
     const handleSubmitCart = () => {
-        const selectedProductWithQuantity = { quantity: selectedValue, product: proDetails.id, userID: profileId }
-        onSelectProducts(prev => new Set([...prev, selectedProductWithQuantity]));
-    }
+        const selectedProductWithQuantity = { quantity: selectedQuantity, product: proDetails.id, userID: profileId }
+        // Bug && fix needed.
+        onSelectProducts(prev => new Set(...prev, selectedProductWithQuantity));
+    };
 
     return (<>
         <div className="parent pt-5">
@@ -70,15 +74,15 @@ export default function ProductDetails({ onSelectProducts }) {
 
                 <div className="d-flex align-items-center q-container" >
 
-                    <Form.Select aria-label="Default select example" onChange={handleQuantities} value={selectedValue}>
-                        <option value={selectedValue}>{selectedValue}</option>
+                    <Form.Select aria-label="Default select example" onChange={handleQuantities} value={selectedQuantity || "Quantity"}>
+                        <option value={"Quantity"}>{"Quantity"}</option>
                         {/* length = N number of entries ==> quantityDefNumber */}
                         {Array.from({ length: quantityDefNumber }, (_, i) => {
                             const n = i + 1;
                             return <option key={n} value={n}>{n}</option>
                         })}
                     </Form.Select>
-                    <Button variant="dark" onClick={() => handleSubmitCart()}>Add to <GetCategoryIcon category={"cart"} /></Button>
+                    <Button variant="dark" disabled={!btnStatus} onClick={() => handleSubmitCart()}>Add to <GetCategoryIcon category={"cart"} /></Button>
                 </div>
             </div>
         </div >
