@@ -1,24 +1,25 @@
 import { useParams } from "react-router-dom";
 import useProductDetails from './useProductDetails.js';
 import './ProductDetails.css';
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import GetCategoryIcon from "../../utils/GetCategoryIcon.jsx";
 import { Form, Button, Carousel } from "react-bootstrap";
 import { useAuth } from "../../context/AuthProvider.jsx";
 
 export default function ProductDetails({ onSelectProducts }) {
-
+    // Properties
     const { id } = useParams();
     const { details } = useProductDetails(id);
-    const [proDetails, setProDetails] = useState(null)
     const quantityDefNumber = 10;
+    // state Hooks:
+    const [proDetails, setProDetails] = useState(null)
     const [index, setIndex] = useState(0);
     const [selectedQuantity, setSelectedQuantity] = useState("Quantity");
     const { profileData } = useAuth();
     const [profileId, setProfileID] = useState(false)
     const [btnStatus, setBtnStatus] = useState(false)
 
-
+    // Methods:
     const handleSelect = (selectedIndex) => {
         setIndex(selectedIndex);
     };
@@ -29,22 +30,29 @@ export default function ProductDetails({ onSelectProducts }) {
         if (profileData && profileData.id) {
             setProfileID(profileData.id);
         };
-        console.log(`The btn status is: ${btnStatus}`)
     }, [details, profileData]);
-
-
 
     const handleQuantities = (e) => {
         const newValue = e.target.value;
         setSelectedQuantity(newValue);
-
         setBtnStatus(newValue !== "Quantity")
     };
 
     const handleSubmitCart = () => {
-        const selectedProductWithQuantity = { quantity: selectedQuantity, product: proDetails.id, userID: profileId }
-        // Bug && fix needed.
-        onSelectProducts(prev => new Set(...prev, selectedProductWithQuantity));
+        onSelectProducts(prev => {
+            const arrIndex = prev.findIndex(item => item.product === proDetails.id);
+            console.log(prev)
+            if (arrIndex !== -1) {
+                const updatedProducts = [...prev];
+                updatedProducts[arrIndex] = {
+                    ...updatedProducts[arrIndex], quantity: parseInt(updatedProducts[arrIndex].quantity) + parseInt(selectedQuantity)
+                };
+                return updatedProducts;
+            } else {
+
+                return [...prev, { quantity: parseInt(selectedQuantity), product: proDetails.id, userID: profileId }];
+            };
+        });
     };
 
     return (<>

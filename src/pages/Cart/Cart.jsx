@@ -4,7 +4,7 @@ function Cart(selectedProducts) {
 
 
     useEffect(() => {
-        console.log(selectedProducts);
+        console.log(selectedProducts.selectedProducts);
     }, [selectedProducts])
 
     // All cartProducts will be showing here.

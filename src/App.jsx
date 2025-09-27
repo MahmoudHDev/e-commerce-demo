@@ -20,7 +20,7 @@ function App() {
 
   const [selectedCategory, setSelectedCategory] = useState("all");
 
-  const [selectedProducts, SetSelectedProducts] = useState(new Set());
+  const [selectedProducts, SetSelectedProducts] = useState([]);
 
   return (<>
     <Router>
